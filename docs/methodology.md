@@ -101,5 +101,61 @@ Based on business impact and data availability:
 - Bi-weekly review meetings with Logistics and Customer Experience leads  
 
 ---
+## 1.9 Problem Translation to DS/ML Task
+
+### A. Task Classification
+**Task Type:** Causal Inference / Treatment Effect Estimation
+
+**Formal Problem Statement:**
+- **Treatment Variable (T):** Binary indicator for implementation of new 3PL network + algorithmic carrier selection at time T_intervention
+- **Outcome Variables (Y):** 
+  - Y₁: Cost per shipment (continuous, USD)
+  - Y₂: Delivery time (continuous, hours)  
+  - Y₃: Customer satisfaction score (continuous, rating scale)
+- **Units:** Individual shipments or aggregated time-region units
+- **Time Dimension:** Pre-intervention (Q1 and earlier) vs. Post-intervention (Q2 onwards)
+
+### B. Causal Inference Framework
+**Fundamental Causal Question:** What would the outcomes have been in the absence of the intervention?
+
+**Identification Strategy:**
+- **Primary Challenge:** Estimating counterfactual outcomes Y₀ᵢ for treated units
+- **Confounding Sources:** Seasonality, market conditions, concurrent operational changes, regional heterogeneity
+- **Temporal Structure:** Exploit before/after variation with robust time trend modeling
+
+### C. Technical Approach
+**Statistical Framework:**
+- **Quasi-Experimental Design** rather than pure predictive modeling
+- **Multiple Estimator Approach** for robustness and sensitivity analysis:
+  1. **Difference-in-Differences (DiD):** Leverage parallel trends assumption across regions/time
+  2. **Synthetic Control Method:** Construct artificial counterfactual using donor pool
+  3. **Interrupted Time Series (ITS):** Model structural breaks in time series
+- **Validation Framework:** Cross-validation using causal inference diagnostics
+
+### D. Key Methodological Distinctions
+**Explanatory vs. Predictive Modeling:**
+- **Objective:** Unbiased causal effect estimation rather than forecast accuracy
+- **Model Selection:** Prioritize interpretability and causal identification over predictive performance
+- **Evaluation Metrics:** Statistical significance, effect size, robustness checks vs. RMSE/MAE
+- **Assumptions:** Focus on causal assumptions (parallel trends, no spillovers) vs. distributional assumptions
+
+**Treatment of Confounding:**
+- **Observed Confounders:** Control for measurable factors (seasonality, regional characteristics)
+- **Unobserved Confounders:** Leverage quasi-experimental variation and sensitivity analysis
+- **Time-Varying Confounders:** Use flexible time trend modeling and event study designs
+
+### E. Success Criteria Translation
+**Statistical Success Metrics:**
+- **Effect Size:** Economically meaningful treatment effects (>5% cost reduction, >10-hour delivery improvement)
+- **Statistical Significance:** p-values <0.05 with robust standard errors
+- **Robustness:** Consistent results across multiple causal methods
+- **Assumption Validation:** Pass diagnostic tests for parallel trends and other identifying assumptions
+
+**Model Validation Approach:**
+- **Placebo Tests:** Test for effects in pre-treatment periods
+- **Sensitivity Analysis:** Assess robustness to unobserved confounding
+- **Cross-Method Validation:** Compare results across DiD, synthetic control, and ITS
+
+---
 
 *This section will be updated as new information or constraints arise during the project lifecycle.*
