@@ -1,3 +1,4 @@
+```mermaid
 graph TD
 
 %% Unobserved confounders (hidden variables)
@@ -80,3 +81,4 @@ class AS,PR treatment
 class DT,Cost,OT,Sat outcome
 class CS,T,SL confounder
 class CarrierSel,SR mechanism
+```
