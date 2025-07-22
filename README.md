@@ -175,7 +175,8 @@ python -c "import src; print('Setup OK')"
 
 ## 🔬 Methodology
 ### Causal Inference DAG
-📘 Expand to view causal DAG [causal_DAG](docs/causal_DAG.md)
+📘 [Full DAG with Mechanisms](docs/causal_DAG.md)  
+📘 [Simplified DAG (for Estimation)](docs/causal_assumptions.md)
 
 ### Causal Inference Pipeline
 1. **Data Preparation**: Clean and structure pre/post intervention data  
