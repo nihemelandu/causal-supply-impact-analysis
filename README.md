@@ -168,7 +168,7 @@ python -c "import src; print('Setup OK')"
     ├── methodology.md
     ├── data_dictionary.md
     ├── causal_assumptions.md
-    └── technical_specs.md
+    └── causal_DAG.md
 ```
 
 ---
