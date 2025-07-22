@@ -14,3 +14,21 @@ graph TD
     U2 --> Y2
     U2 --> Y3
 ```
+
+```mermaid
+graph TD
+    U1["Customer Quality Score (unobserved)"] --> P3["3PL Partner Carrier"]
+    U2["Carrier Capability Score (unobserved)"] --> P3
+
+    P3 --> Y1["Delivery Time"]
+    P3 --> Y2["Cost per Shipment"]
+    P3 --> Y3["Customer Satisfaction"]
+
+    U1 --> Y1
+    U1 --> Y2
+    U1 --> Y3
+    U2 --> Y1
+    U2 --> Y2
+    U2 --> Y3
+
+```
