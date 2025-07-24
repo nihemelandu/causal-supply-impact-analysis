@@ -2,28 +2,39 @@
 graph TD
     Treatment[🔄 Logistics System]
     Cost[💵 Cost per Shipment]
-
-    %% Confounders
+    
+    %% Key Confounders (affect BOTH treatment and outcome)
+    PeakSeason[📈 Peak Season]
+    MonthlyVolume[📦 Monthly Volume]
+    BusinessGrowth[📊 Business Growth]
+    
+    %% Direct Cost Confounders (affect only outcome)
     PackageWeight[⚖️ Weight]
-    ServiceLevel[🚀 Service Level]
+    ServiceLevel[🚀 Service Level]  
     Distance[🗺️ Distance]
     FuelPrice[⛽ Fuel Price]
-    PeakSeason[📈 Peak Season]
-    MonthlyVolume[📦 Volume]
-
-    %% Collider (avoid)
+    
+    %% Collider
     Performance[⭐ Performance Rating]
-
-    %% Arrows
-    Treatment --> Cost
+    
+    %% CONFOUNDING PATHS (must control for these)
+    BusinessGrowth --> MonthlyVolume
+    BusinessGrowth --> Treatment
+    MonthlyVolume --> Treatment
+    MonthlyVolume --> Cost
+    PeakSeason --> Treatment
+    PeakSeason --> Cost
+    
+    %% DIRECT EFFECTS ON COST (control for precision)
     PackageWeight --> Cost
     ServiceLevel --> Cost
     Distance --> Cost
     FuelPrice --> Cost
-    PeakSeason --> Cost
-    MonthlyVolume --> Cost
-
-    %% Collider Path
+    
+    %% CAUSAL EFFECT OF INTEREST
+    Treatment --> Cost
+    
+    %% COLLIDER (don't control)
     Treatment --> Performance
     Cost --> Performance
 ```
