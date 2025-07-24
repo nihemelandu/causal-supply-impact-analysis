@@ -1,34 +1,59 @@
 ```mermaid
 graph TD
-    U1["Customer Quality Score (unobserved)"] --> AS[Algorithmic Selection]
-    U2["Carrier Capability Score (unobserved)"] --> AS
+    Treatment[🔄 Logistics System]
+    Cost[💵 Cost per Shipment]
 
-    AS --> Y1["Delivery Time"]
-    AS --> Y2["Cost per Shipment"]
-    AS --> Y3["Customer Satisfaction"]
+    %% Confounders
+    PackageWeight[⚖️ Weight]
+    ServiceLevel[🚀 Service Level]
+    Distance[🗺️ Distance]
+    FuelPrice[⛽ Fuel Price]
+    PeakSeason[📈 Peak Season]
+    MonthlyVolume[📦 Volume]
 
-    U1 --> Y1
-    U1 --> Y2
-    U1 --> Y3
-    U2 --> Y1
-    U2 --> Y2
-    U2 --> Y3
+    %% Collider (avoid)
+    Performance[⭐ Performance Rating]
+
+    %% Arrows
+    Treatment --> Cost
+    PackageWeight --> Cost
+    ServiceLevel --> Cost
+    Distance --> Cost
+    FuelPrice --> Cost
+    PeakSeason --> Cost
+    MonthlyVolume --> Cost
+
+    %% Collider Path
+    Treatment --> Performance
+    Cost --> Performance
 ```
 
 ```mermaid
 graph TD
-    U1["Customer Quality Score (unobserved)"] --> P3["3PL Partner Carrier"]
-    U2["Carrier Capability Score (unobserved)"] --> P3
+    Treatment[🔄 Logistics System]
+    Time[⏱️ Delivery Time]
 
-    P3 --> Y1["Delivery Time"]
-    P3 --> Y2["Cost per Shipment"]
-    P3 --> Y3["Customer Satisfaction"]
+    %% Confounders
+    ServiceLevel[🚀 Service Level]
+    Distance[🗺️ Distance]
+    PackageWeight[⚖️ Weight]
+    Weather[🌧️ Weather]
+    Holiday[🎄 Holiday]
+    PeakSeason[📈 Peak Season]
 
-    U1 --> Y1
-    U1 --> Y2
-    U1 --> Y3
-    U2 --> Y1
-    U2 --> Y2
-    U2 --> Y3
+    %% Collider (avoid)
+    Performance[⭐ Performance Rating]
 
+    %% Arrows
+    Treatment --> Time
+    ServiceLevel --> Time
+    Distance --> Time
+    PackageWeight --> Time
+    Weather --> Time
+    Holiday --> Time
+    PeakSeason --> Time
+
+    %% Collider Path
+    Treatment --> Performance
+    Time --> Performance
 ```
